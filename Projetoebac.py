@@ -6,17 +6,17 @@ import seaborn as sns
 pd.set_option('display.max_columns', None)
 sns.set(style="whitegrid", palette="pastel")
 
-# 1. Carregar o dataset
+# Carregar o dataset
 df = pd.read_csv("The impact of artificial intelligence on society.csv", encoding="latin1")
 
-# 2. Informações básicas
+# Informações básicas
 print("\n Informações gerais do dataset:")
 print(df.info())
 
 print("\n Primeiras 5 linhas:")
 print(df.head())
     
-# 3. Verificar valores ausentes
+# Verificar valores ausentes
 print("\n Valores nulos por coluna:")
 print(df.isnull().sum())
 
@@ -34,14 +34,14 @@ print(df["What is your occupation? (optional)"].unique())
 ocupacoes = df["What is your occupation? (optional)"].value_counts()
 print(ocupacoes)
  
-# Conferindo novamente se ainda existem nulos
+# Conferindo se ainda existem nulos
 print(df["What is your occupation? (optional)"].isnull().sum())
 
-# 4. Estatísticas descritivas (todas as variáveis)
+# Estatísticas descritivas
 print("\n Estatísticas descritivas (todas as variáveis):")
 print(df.describe(include="all"))
 
-# 5. Distribuição por variáveis categóricas
+# Distribuição por variáveis categóricas
 cat_cols = df.select_dtypes(include=["object"]).columns
 
 for col in cat_cols:
@@ -53,10 +53,9 @@ for col in cat_cols:
     plt.tight_layout()
     plt.show()
 
-# 6.  Geração automática de insights básicos
+# Geração de insights básicos
 print("\n INSIGHTS AUTOMÁTICOS:")
 
-# Perfil demográfico
 idade_top = df["What is your age range?"].value_counts().idxmax()
 idade_freq = df["What is your age range?"].value_counts().max()
 print(f"- Faixa etária mais comum: {idade_top} ({idade_freq} respondentes)")
@@ -71,7 +70,6 @@ print(f"- Escolaridade mais comum: {educ_top}")
 prof_top = df["What is your occupation? (optional)"].value_counts().idxmax()
 print(f"- Ocupação mais citada: {prof_top}")
 
-# Uso de tecnologia e IA
 uso_top = df["How often do you use technological devices?"].value_counts().idxmax()
 print(f"- Uso mais frequente de dispositivos tecnológicos: {uso_top}")
 
@@ -81,7 +79,6 @@ print(f"- Nível de conhecimento sobre IA mais comum: {conhecimento_top}")
 media_uso_ai = df["Please rate how actively you use AI-powered products in your daily life on a scale from 1 to 5."].mean()
 print(f"- Média de uso de produtos com IA: {media_uso_ai:.2f} (escala de 1 a 5)")
 
-# Percepção sobre IA
 conf_top = df["Do you generally trust artificial intelligence (AI)?"].value_counts().idxmax()
 print(f"- Confiança predominante na IA: {conf_top}")
 
@@ -91,7 +88,6 @@ print(f"- Opinião mais comum sobre impacto da IA: {impacto_top}")
 etica_top = df["Do you believe that artificial intelligence (AI) should be limited by ethical rules?"].value_counts().idxmax()
 print(f"- Posição mais comum sobre limites éticos: {etica_top}")
 
-# Conhecimento técnico
 nao_ia_top = df["Which of the following do you think is NOT an artificial intelligence (AI) application?"].value_counts().idxmax()
 print(f"- Aplicação mais citada como não sendo IA: {nao_ia_top}")
 
